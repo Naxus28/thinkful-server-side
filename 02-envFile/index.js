@@ -9,6 +9,7 @@ const ENV = process.env.NODE_ENV // set in .env file
 const app = express();
 
 app.use(express.static('public'));
+app.use(morgan('dev'));
 
 app.get('/env', (req, res, next) => {
   res.json({ENV, PORT});
