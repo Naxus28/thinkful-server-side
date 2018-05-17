@@ -1,0 +1,21 @@
+body {
+  margin: 20px;
+  background: #FEC;
+}
+.counter {
+  font-size: 24px;
+}
+button {
+  width: 250px;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+button:first-child {
+  background: #35F;
+}
+button:nth-child(2){
+  background: #F44;
+}
