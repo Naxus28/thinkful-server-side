@@ -12,7 +12,6 @@ app.use(express.static('public'));
 // logger--check docs for param options
 app.use(morgan('dev'));
 
-
 // api route to get the counter state
 app.get('/api-counter',  (req, res, next) => {
   counter++;

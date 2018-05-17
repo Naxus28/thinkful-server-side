@@ -1,4 +1,4 @@
-let ajaxCall = (httpMethod) => $[httpMethod]('/api-counter', data => $('.count').text(data.count));
+let ajaxCall = httpMethod => $[httpMethod]('/api-counter', data => $('.count').text(data.count));
 
 $(() => {
   $('button').on('click', e => {
