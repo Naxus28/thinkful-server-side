@@ -1,6 +1,5 @@
-# Thinkful Counter App
+# Thinkful Server Side Javascript Program
 
-This is the first server side app of the Thinkful Full Stack Web Development Program
 
 ## Instalation
 
@@ -26,3 +25,4 @@ $ npm install && npm start
 ```
 
 Then open your browser to the URL displayed on the terminal to see the app.
+
