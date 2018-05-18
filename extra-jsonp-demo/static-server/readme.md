@@ -1,3 +1,3 @@
-# res.json
+# This directory is part of the jsonp demo
 
-`res.json` converts JavaScript objects to JSON and appropriately sets the Content-Type header to application/json; charset=utf-8 . By default, we'll get a 200 HTTP status code.
+This server will serve the static files from which the index.js file will make an api call to a different domain. That call can only be successful if the server is either configured with CORS or jsonp. For this demo, Our client will send a jsonp request and the server will send a jsonp response. 
