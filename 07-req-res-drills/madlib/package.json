@@ -1,0 +1,18 @@
+{
+  "name": "madlib",
+  "version": "1.0.0",
+  "description": "In this drill, you'll implement a simple Mad Libs interface. If you're not familiar with Mad Libs, it's the name of a word game that dates back to the 1960s and is still around. It's the sort of game kids will play to stay occupied while riding in the back of a car with an equally bored sibling on a cross-country family vacation. You are prompted to supply keywords of your choosing: for instance, a proper name, an adjective, a sport, a dessert item, etc. After making your choices, you plug each into a preset, paragraph-long text that has blanks that you fill in with the word choices you've made.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index --exec babel-node -e js"
+  },
+  "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4"
+  }
+}

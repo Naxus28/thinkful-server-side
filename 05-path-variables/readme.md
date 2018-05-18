@@ -1,3 +1,3 @@
-# res.json
+# req.params
 
-`res.json` converts JavaScript objects to JSON and appropriately sets the Content-Type header to application/json; charset=utf-8 . By default, we'll get a 200 HTTP status code.
+This example highlights the use of path variables. Path variables allow us to define slots for variables in our URL path.
