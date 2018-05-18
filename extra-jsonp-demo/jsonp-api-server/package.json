@@ -1,0 +1,19 @@
+{
+  "name": "03-express-req-res",
+  "version": "1.0.0",
+  "description": "This app explores some properties and uses of express `req` and `res` objects.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index --exec babel-node -e js"
+  },
+  "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4"
+  }
+}
