@@ -37,6 +37,8 @@ app.use(function (req, res, next) {
 });
 ```
 
+[Check this site] (https://enable-cors.org/server_expressjs.html)
+
 This middleware function configures the response headers to allow CORS. That's all it takes to make your API accessible by client-side code on other domains.
 
 This fairly minimal CORS setup will work well for most simple use cases, but when your app becomes more complex and you need to support a wider range of HTTP methods, browsers, and configurations we recommend you switch to using this pre-built CORS middleware.
