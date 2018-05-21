@@ -1,0 +1,37 @@
+[
+  {"id": 1,
+   "firstName": "Joe",
+   "lastName": "Schmoe",
+   "userName": "joeschmoe@business.com",
+   "position": "Sr. Engineer",
+   "isAdmin": true,
+   "password": "1234"
+  },
+  {
+   "id": 2,
+   "firstName": "Sally",
+   "lastName": "Sanders",
+   "userName": "ssanders@business.com",
+   "position": "Designer",
+   "isAdmin": true,
+   "password": "2345"
+  },
+  {
+   "id": 3,
+   "firstName": "Mike",
+   "lastName": "Ludenberg",
+   "userName": "mludenberg@business.com",
+   "position": "UX/UI",
+   "isAdmin": true,
+   "password": "3456"
+  },
+  {
+   "id": 4,
+   "firstName": "Chris",
+   "lastName": "Cranion",
+   "userName": "ccranion@business.com",
+   "position": "Manager",
+   "isAdmin": true,
+   "password": "4567"
+  }
+]
