@@ -10,7 +10,7 @@ $(() => {
     $(e.target)[0].reset();
 
     if (!user || !pass) { 
-      return $userContainer.html('<p>Please enter your username and password.</p>')
+      return $userContainer.html('<p>Please enter your username and password.</p>');
     }
 
     $.ajax({
