@@ -1,22 +1,9 @@
 'use strict';
 
 import express from 'express';
-import redirectsMap from './config/redirects';
+import handleRedirects from './middleware/redirect';
+
 const app = express();
-
-
-const handleRedirects = (req, res, next) => {
-  // if a key in the redirectsMap obj matches the url path 
-  // redirect to the new url
-  if (Object.keys(redirectsMap).find(entry => entry === req.path)) {
-      console.log(`Redirecting ${req.path} to ${redirectsMap[req.path]}`);
-
-      //https://expressjs.com/en/api.html
-      res.redirect(301, redirectsMap[req.path]);
-  } else {
-    next();
-  }
-}
   
 app.use(handleRedirects);
 
