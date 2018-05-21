@@ -21,24 +21,21 @@ $(() => {
         'x-username-and-password': `user=${user}&password=${pass}`
       },
       success: user => {
-        let html = '';
-        // using for...of loop to iterate over an iterable created by Object.entries()
-        // the iterable will be an array of arrays with such taxonomy
-        /*
+        let html = '<h3>User</h3>';
+        /* using for...of loop to iterate over an iterable (array of arrays) 
+         * created by Object.entries(): 
          * 0: ["id", 1]
          * 1: ["firstName", "Joe"]
          * 2: ["lastName", "Schmoe"]
-         * 3: ["userName", "joeschmoe@business.com"]
-         * 4: ["position", "Sr. Engineer"]
-         * 5: ["isAdmin", true]
-         * 6: ["password", "1234"]
+         * etc
          */
         for (let [key, value] of Object.entries(user)) {
           html+= `<p>${key}: ${value}</p>`
         }
+
         $userContainer.html(html);
       },
-      error: err => $userContainer.html(`<p>${err.message}</p>`)
+      error: err => $userContainer.html(`<p>${err.responseJSON.message}</p>`)
     });
 
   });
