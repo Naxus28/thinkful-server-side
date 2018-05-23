@@ -1,7 +1,7 @@
 {
-  "name": "11-gatekeeper-middleware-challenge",
+  "name": "13-rest-api-and-models",
   "version": "1.0.0",
-  "description": "To close out this lesson, you'll write a piece of middleware that can be used as part of an access control strategy. Access control is the practice of restricting use of some resource to approved individuals.",
+  "description": "REST (REpresentational State Transfer) is a style of software architecture, a set of principles for designing APIs.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index --exec babel-node -e js"
@@ -15,9 +15,6 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.4",
-    "query-string": "^6.1.0"
-  },
-  "devDependencies": {
-    "flow-bin": "^0.72.0"
+    "uuid": "^3.2.1"
   }
 }
