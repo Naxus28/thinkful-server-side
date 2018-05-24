@@ -21,4 +21,4 @@ const getRoutes = () => {
   return router;
 };
 
-export default (app, router) => app.use('/recipes', getRoutes(router));
+export default (app, router) => app.use('/recipes', getRoutes());

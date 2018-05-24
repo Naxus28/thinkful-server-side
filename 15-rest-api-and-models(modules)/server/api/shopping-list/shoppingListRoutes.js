@@ -22,4 +22,4 @@ const getRoutes = () => {
   return router;
 };
 
-export default (app, router) => app.use('/shopping-list', getRoutes(router));
+export default app => app.use('/shopping-list', getRoutes());
