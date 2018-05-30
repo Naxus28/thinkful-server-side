@@ -6,18 +6,20 @@ import { validateApiRequest } from '../apiHelpers';
 const posts = [];
 
 export default {
-  create({ title, content, author, publishDate = Date.now() }) {
+  create({ title, content, author, publishDate = Date.now(), id = uuid.v4() }) {
     
+    // if request is invalid this function throws an exception
     validateApiRequest(arguments['0']); 
 
     const post = {
-      id: uuid.v4(),
+      id,
       title,
       content,
       author,
       publishDate
     };
     posts.push(post);
+
     return post;
   },
   get(id='') {
@@ -34,6 +36,8 @@ export default {
     
     if (postIndex > -1) {
       posts.splice(postIndex, 1);
+    } else {
+      throw new StorageException(`Can't delete item \`${id}\` because it doesn't exist.`, 400);
     }
   },
   update(updatedPost) {
