@@ -51,7 +51,7 @@ describe('===BLOG API===', function() {
 
   // POST
   describe('/POST blog', function() {
-    it('should POST a blog', function(done) {
+    it('should POST a blog post', function(done) {
       // mock a new blog post
       const newblog = {
         author: 'John Doe', 
@@ -75,7 +75,7 @@ describe('===BLOG API===', function() {
 
   // GET BLOG BY ID
   describe('/GET/:id blog', function() {
-    it('should GET a blog by ID', function(done) {
+    it('should GET a blog post by ID', function(done) {
       // mock a new blog post
       const newblog = {
         author: 'John Doe', 
@@ -112,7 +112,7 @@ describe('===BLOG API===', function() {
 
   // PUT BLOG 
   describe('/PUT/:id blog', function() {
-    it('should UPDATE a blog', function(done) {
+    it('should UPDATE a blog post', function(done) {
       // mock a new blog post
       const blog = {
         author: 'John Doe', 
@@ -156,7 +156,7 @@ describe('===BLOG API===', function() {
 
   // DELETE BLOG 
   describe('/DELETE/:id blog', function() {
-    it('should UPDATE a blog', function(done) {
+    it('should DELETE a blog post', function(done) {
       // mock a new blog post
       const blog = {
         author: 'John Doe', 
