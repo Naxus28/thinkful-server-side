@@ -1,24 +1,23 @@
-import { ApiException } from '../../errorHandlers/exceptionClasses';
-
+import { ApiException } from '../errorHandlers/exceptionClasses';
 /**
- * validates post requests by checking if all required params are present
- * @param  {Object} postItems the post object
- * @return undefined | throw exception
+ * checks if api request is missing mandatory params
+ * @param  {Object} items the post object
+ * @return missingItems | throws exception
  */
-const validatePost = (postItems) => {
+const validateApiRequest = (items) => {
   let missingItems = [];
 
-  for (let [key, value] of Object.entries(postItems)) {
+  for (let [key, value] of Object.entries(items)) {
     if (!value) {
       missingItems.push(key);
     }
   }
 
   if (missingItems.length) {
-    throw new ApiException(`Missing required item(s): ${missingItems}`, 400);
+    throw new ApiException(`Missing required item(s): '${missingItems}'`, 400);
   }
 };
 
 export {
-  validatePost
+  validateApiRequest
 };

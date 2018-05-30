@@ -10,8 +10,6 @@ import blogRoutes from 'api/blog/blogRoutes';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-
-// app
 appMiddleware(app, express);
 
 blogRoutes(app);

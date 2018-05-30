@@ -1,14 +1,14 @@
 import uuid from 'uuid';
-import { StorageException } from '../../../errorHandlers/exceptionClasses';
-import { validatePost } from '../apiHelpers';
+import { StorageException } from '../../errorHandlers/exceptionClasses';
+import { validateApiRequest } from '../apiHelpers';
 
 // var to hold the post
 const posts = [];
 
 export default {
   create({ title, content, author, publishDate = Date.now() }) {
-
-    validatePost(arguments['0']);
+    
+    validateApiRequest(arguments['0']); 
 
     const post = {
       id: uuid.v4(),
@@ -41,7 +41,7 @@ export default {
     const postIndex = posts.findIndex(post => post.id === id);
     
     if (postIndex === -1) {
-      throw new StorageException(`Can't update item \`${id}\` because it doesn't exist.`)
+      throw new StorageException(`Can't update item \`${id}\` because it doesn't exist.`, 400);
     }
 
     // replace the old post with the new
