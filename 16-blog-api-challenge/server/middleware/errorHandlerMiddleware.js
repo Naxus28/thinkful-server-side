@@ -1,13 +1,13 @@
 const errorHandler = (err, req, res, next) => {
-  let status = err.status || 500;
-  console.log('error: ', err.name);
-  console.log('status: ', status);
+  const { status, name, message } = err;
+  console.log('error: ', name);
+  console.log('status: ', status || 500);
   
   res
-    .status(status)
+    .status(status || 500)
     .json({
-      name: err.name,
-      message: err.message
+      name,
+      message
     });
 };
 
