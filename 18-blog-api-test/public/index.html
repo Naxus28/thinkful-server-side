@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog Api</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <h1>Blog Api</h1>
+    
+    <section>
+      <h2>Create a new Blog Post</h2>
+      
+      <form action="#">
+        <div>
+          <label for="author">Author</label>
+          <input for="author" name="author">
+        </div>
+
+        <div>
+          <label for="title">Title</label>
+          <input for="title" name="title">
+        </div>
+
+        <div>
+          <label for="content">Content</label>
+          <input for="content" name="content">
+        </div>
+
+        <button type="submit">Create Post</button>
+      </form>
+
+      <div class="blog-posts">
+        <!-- posts retrieved via jquery -->
+      </div>
+
+    </section>
+  </body>
+</html>

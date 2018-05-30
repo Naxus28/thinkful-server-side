@@ -1,0 +1,35 @@
+html,
+body {
+  box-sizing: border-box;
+  background: #BEE;
+  padding: 40px;
+}
+h1,
+h2,
+h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+span {
+  font-size: 12px;
+}
+
