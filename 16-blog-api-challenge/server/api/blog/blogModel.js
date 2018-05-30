@@ -1,11 +1,15 @@
 import uuid from 'uuid';
-import { StorageException } from '/Users/gferraz/Desktop/Practice/thinkful-server-side/16-blog-api-challenge/errorHandlers/exceptionClasses';
+import { StorageException } from '../../../errorHandlers/exceptionClasses';
+import { validatePost } from '../apiHelpers';
 
 // var to hold the post
 const posts = [];
 
 export default {
   create({ title, content, author, publishDate = Date.now() }) {
+
+    validatePost(arguments['0']);
+
     const post = {
       id: uuid.v4(),
       title,
@@ -33,8 +37,8 @@ export default {
     }
   },
   update(updatedPost) {
-    const {id} = updatedPost;
-    const postIndex = posts.findIndex(post => post.id === updatedPost.id);
+    const { id } = updatedPost;
+    const postIndex = posts.findIndex(post => post.id === id);
     
     if (postIndex === -1) {
       throw new StorageException(`Can't update item \`${id}\` because it doesn't exist.`)

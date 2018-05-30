@@ -5,7 +5,16 @@ class StorageException {
   }
 };
 
+class ApiException{
+  constructor(message, status) {
+    this.message = message;
+    this.status = status;
+    this.name = "ApiException";
+  }
+}
+
 
 export {
+  ApiException,
   StorageException
 };
