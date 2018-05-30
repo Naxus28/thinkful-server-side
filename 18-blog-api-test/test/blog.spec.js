@@ -33,10 +33,10 @@ chai.use(chaiHttp);
  * If you want to keep the server open, perhaps if you're making multiple requests, 
  * you must call .keepOpen() after .request(), and manually close the server down
  */
-describe('Book Api', function() {
+describe('===BLOG API===', function() {
   
   // GET
-  describe('/GET book', function() {
+  describe('/GET blog', function() {
     it('should GET all blog posts', function(done) {
       chai.request(app)
         .get(endPoint)
@@ -50,10 +50,10 @@ describe('Book Api', function() {
   });
 
   // POST
-  describe('/POST book', function() {
+  describe('/POST blog', function() {
     it('should POST a blog', function(done) {
       // mock a new blog post
-      const newBook = {
+      const newblog = {
         author: 'John Doe', 
         title: 'My Blog Post', 
         content: 'I love Node...'
@@ -61,7 +61,7 @@ describe('Book Api', function() {
 
       chai.request(app)
         .post(endPoint)
-        .send(newBook)
+        .send(newblog)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -74,10 +74,10 @@ describe('Book Api', function() {
   }); 
 
   // GET BLOG BY ID
-  describe('/GET/:ID book', function() {
+  describe('/GET/:id blog', function() {
     it('should GET a blog by ID', function(done) {
       // mock a new blog post
-      const newBook = {
+      const newblog = {
         author: 'John Doe', 
         title: 'My Blog Post', 
         content: 'I love Node...'
@@ -86,7 +86,7 @@ describe('Book Api', function() {
       // post blog then get it by id
       chai.request(app)
         .post(endPoint)
-        .send(newBook)
+        .send(newblog)
         .end((err, res) => {
 
           // get by id
@@ -100,19 +100,88 @@ describe('Book Api', function() {
               res.body.should.have.property('content');
               res.body.should.have.property('title');  
 
-              res.body.author.should.equal(newBook.author);
-              res.body.content.should.equal(newBook.content);
-              res.body.title.should.equal(newBook.title);
+              res.body.id.should.equal(res.body.id);
+              res.body.author.should.equal(newblog.author);
+              res.body.content.should.equal(newblog.content);
+              res.body.title.should.equal(newblog.title);
               done();
             });
         });
     });
   });
 
+  // PUT BLOG 
+  describe('/PUT/:id blog', function() {
+    it('should UPDATE a blog', function(done) {
+      // mock a new blog post
+      const blog = {
+        author: 'John Doe', 
+        title: 'My Blog Post', 
+        content: 'I love Node...'
+      };
 
+      const updatedBlog = {
+        author: 'John D.', 
+        title: 'My New Blog Post', 
+        content: 'The truth is I suck at Node...'
+      };
 
+      // post blog then update it
+      chai.request(app)
+        .post(endPoint)
+        .send(blog)
+        .end((err, res) => {
+
+          // update
+          chai.request(app)
+            .put(`${endPoint}\/${res.body.id}`) // need to escape the '/'
+            .send(Object.assign({}, updatedBlog, {id: res.body.id})) // update method requires the id in the object
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.be.a('object');
+
+              res.body.should.have.property('author');
+              res.body.should.have.property('content');
+              res.body.should.have.property('title');  
+
+              res.body.id.should.equal(res.body.id);
+              res.body.author.should.equal(updatedBlog.author);
+              res.body.content.should.equal(updatedBlog.content);
+              res.body.title.should.equal(updatedBlog.title);
+              done();
+            });
+        });
+    });
+  });
+
+  // DELETE BLOG 
+  describe('/DELETE/:id blog', function() {
+    it('should UPDATE a blog', function(done) {
+      // mock a new blog post
+      const blog = {
+        author: 'John Doe', 
+        title: 'My Blog Post', 
+        content: 'I love Node...'
+      };
+
+      // post blog then delete it
+      chai.request(app)
+        .post(endPoint)
+        .send(blog)
+        .end((err, res) => {
+
+          // delete
+          chai.request(app)
+            .delete(`${endPoint}\/${res.body.id}`) // need to escape the '/'
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.equal('');
+              done();
+            });
+        });
+    });
+  });
 
 });
-
 
 
