@@ -16,7 +16,52 @@ const buildPostsHTML = blogPosts => (
 
 // ERROR HANDLER
 const handleError = err => {
-  console.log('err: ', err);
+  let error = typeof err === 'string'
+      ? err
+      : `${err.status} ${err.statusText}: ${err.responseJSON.message}`;
+
+  let $error = $('.error');
+
+  $error.show();
+  $error.html(error);
+};
+
+// VALIDATE FORM
+const fieldsIncomplete = data => {
+  const requiredFields = ['author', 'title', 'content'];
+  const incomplete = [];
+
+  requiredFields.forEach(field => {
+    if (!data[field]) {
+        incomplete.push(field);
+      }
+  });
+
+  return incomplete;
+};
+
+// FORMAT FIELDS TEXT FOR FEEDBACK
+const formatIncompleteFieldsErrorMsg = fields => {
+  let formattedErrorMsg = '';
+
+  fields.forEach((field, i)=> {
+    // if it is the second to last element, add ', and' to string
+    // or ' and' if there are only two elements in the array ("title and content" as opposed to "title, and content")
+    if (i === fields.length-2) {  
+      let text = fields.length > 2 ? `${field}, and ` : `${field} and `;
+      formattedErrorMsg+=text;
+
+    // if it is the last element, don't change anything
+    } else if (i === fields.length-1) { 
+      formattedErrorMsg+=field;
+
+    // else, add comma
+    } else {
+      formattedErrorMsg+=`${field}, `;
+    }
+  });
+
+  return formattedErrorMsg;
 };
 
 // GET
@@ -25,7 +70,7 @@ const getBlogPosts = () => {
     url: URL,
     dataType: 'json',
     success: posts => $('.blog-posts').html(buildPostsHTML(posts)),
-    fail: handleError
+    error: handleError
   });
 };
 
@@ -34,9 +79,18 @@ const postBlogPosts = () => {
   $('.blog-form').on('submit', e => {
     e.preventDefault();
     let $form = $(e.target),
+        $error = $('.error'),
         data = $form.serializeObject();
+        incompleteFields = fieldsIncomplete(data);
 
-    $form[0].reset();
+     if (incompleteFields.length) {
+      let formattedFields = incompleteFields.length === 1
+          ? incompleteFields
+          : formatIncompleteFieldsErrorMsg(incompleteFields);
+
+      handleError(`Please enter "${formattedFields}" before submitting the form.`);
+      return;
+     }
 
      // POST
     $.ajax({
@@ -50,8 +104,12 @@ const postBlogPosts = () => {
         'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
       },
       data: JSON.stringify(data), // need to stringify to send as json
-      success: posts => $('.blog-posts').prepend(buildPostsHTML([posts])),
-      fail: handleError
+      success: posts => {
+        $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
+        $error.hide();
+        $form[0].reset();
+      }, 
+      error: handleError
     });
   });
 };

@@ -3,7 +3,7 @@
 }
 html,
 body {
-  background: #BEE;
+  background: #cedede;
   padding: 20px;
 }
 .the-pit {
@@ -94,6 +94,16 @@ span {
 }
 .blog-posts__post-footer span:nth-child(2) {
   text-align: right
+}
+.error {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background: #f16a5d;
+  color: white;
 }
 
 
