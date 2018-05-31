@@ -1,21 +1,15 @@
 const router = require('express').Router();
-import {
-  getBlogs,
-  getBlog,
-  postBlog,
-  putBlog,
-  deleteBlog
-} from './blogCtrls';
+import ctrls from './blogCtrls';
 
 const getRoutes = () => {
   router.route('/')
-    .get(getBlogs)
-    .post(postBlog);
+    .get(ctrls.getBlogs)
+    .post(ctrls.postBlog);
 
   router.route('/:id')
-    .get(getBlog)
-    .put(putBlog)
-    .delete(deleteBlog);
+    .get(ctrls.getBlog)
+    .put(ctrls.putBlog)
+    .delete(ctrls.deleteBlog);
 
   return router;
 };

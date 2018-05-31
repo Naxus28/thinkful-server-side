@@ -62,7 +62,8 @@ h2 {
   font-size: 26px;
 }
 h3 {
-  font-size: 24px;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 p {
   font-size: 16px;
@@ -79,7 +80,7 @@ span {
 .blog-posts__post {
   border: 1px solid black;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .blog-posts__post-footer {
   display: flex;

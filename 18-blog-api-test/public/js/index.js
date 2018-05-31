@@ -1,5 +1,6 @@
 const URL = 'http://localhost:8080/blog';
 
+// BUILD POST HTML
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
     `<div class="blog-posts__post">
@@ -13,10 +14,7 @@ const buildPostsHTML = blogPosts => (
   ))
 );
 
-const appendBlogPost = blogPost => {
-  $('.blog-posts').append(blogPost);
-};
-
+// ERROR HANDLER
 const handleError = err => {
   console.log('err: ', err);
 };
@@ -26,32 +24,45 @@ const getBlogPosts = () => {
   $.ajax({
     url: URL,
     dataType: 'json',
-    success: posts => {
-      const postsHtml = buildPostsHTML(posts);
-      $('.blog-posts').html(postsHtml)
-    },
+    success: posts => $('.blog-posts').html(buildPostsHTML(posts)),
     fail: handleError
   });
 };
 
+// POST
 const postBlogPosts = () => {
-  $('form').on('submit', e => {
+  $('.blog-form').on('submit', e => {
     e.preventDefault();
+    let $form = $(e.target),
+        data = $form.serializeObject();
+
+    $form[0].reset();
 
      // POST
     $.ajax({
       url: URL,
       method: 'POST',
       dataType: 'json',
-      success: appendBlogPost,
+
+      // need to set this header if sending data to be parsed by express.json() middleware
+      // otherwise data will be parsed by express.urlencoded()
+      headers: {
+        'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
+      },
+      data: JSON.stringify(data), // need to stringify to send as json
+      success: posts => $('.blog-posts').prepend(buildPostsHTML([posts])),
       fail: handleError
     });
   });
 };
 
+// INIT
+const init = () => {
+  getBlogPosts();
+  postBlogPosts();
+};
 
-$(getBlogPosts,
-  postBlogPosts);
+$(init);
 
 
 
