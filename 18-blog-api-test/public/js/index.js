@@ -3,9 +3,12 @@ const URL = 'http://localhost:8080/blog';
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
     `<div class="blog-posts__post">
-      <h3 class="title">${post.title}</h3>
-      <p class="content">${post.content}</p>
-      <span class="author">${post.author}</span>
+      <h3 class="blog-posts__post-title">${post.title}</h3>
+      <p class="blog-posts__post-content">${post.content}</p>
+      <div class="blog-posts__post-footer">
+        <span class="author">${post.author}</span>
+        <span class="date">${moment(post.publishDate).format('dddd, MMMM Do YYYY, h:mm:ss a')}</span>
+      </div>
     </div>`
   ))
 );

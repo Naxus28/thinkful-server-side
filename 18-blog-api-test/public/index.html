@@ -5,32 +5,28 @@
     <title>Blog Api</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
   </head>
-  <body>
-    <h1>Blog Api</h1>
-    
-    <section>
-      <h2>Create a new Blog Post</h2>
+  <body>    
+    <header>
+      <h1>Blog Api</h1>
+    </header>
+    <section class="the-pit">
+      <h2>Create a new blog post</h2>
       
       <form action="#">
-        <div>
-          <label for="author">Author</label>
-          <input for="author" name="author">
+        <div class="input-wrapper">
+          <input for="author" name="author" placeholder="Author">
+          <input for="title" name="title" placeholder="Title">
         </div>
 
-        <div>
-          <label for="title">Title</label>
-          <input for="title" name="title">
-        </div>
-
-        <div>
-          <label for="content">Content</label>
-          <input for="content" name="content">
+        <div class="input-wrapper">
+          <textarea name="blog-text" placeholder="Write your post"></textarea>
         </div>
 
         <button type="submit">Create Post</button>
