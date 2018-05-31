@@ -32,15 +32,29 @@ input:first-child{
   margin-right: 10px;
 }
 button {
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+button[type="submit"] {
   width: 30%;
   height: 50px;
   padding: 5px;
-  border: none;
   background: #5c7c94;
-  color: white;
   font-size: 16px;
   text-transform: uppercase;
-  cursor: pointer;
+}
+button.update,
+button.delete {
+  width: 10%;
+}
+button.update {
+  background: #5c7c94;
+  margin-right: 10px;
+}
+button.delete {
+  background: #f16a5d;
 }
 form {
   margin-top: 20px;
@@ -82,15 +96,22 @@ span {
   padding: 10px;
   margin-bottom: 20px;
 }
+.blog-posts__post-header {
+  display: flex;
+}
+.blog-posts__post-header h3 {
+  width: 80%;
+}
+
+.blog-posts__post-content {
+  margin-bottom: 15px;
+  line-height: 22px;
+}
 .blog-posts__post-footer {
   display: flex;
 }
 .blog-posts__post-footer span {
   width: 50%;
-}
-.blog-posts__post-content {
-  margin-bottom: 15px;
-  line-height: 22px;
 }
 .blog-posts__post-footer span:nth-child(2) {
   text-align: right

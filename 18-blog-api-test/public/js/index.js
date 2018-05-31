@@ -4,7 +4,11 @@ const URL = 'http://localhost:8080/blog';
 const buildPostsHTML = blogPosts => ( 
   blogPosts.map(post => (
     `<div class="blog-posts__post">
-      <h3 class="blog-posts__post-title">${post.title}</h3>
+      <div class="blog-posts__post-header">
+        <h3 class="blog-posts__post-title">${post.title}</h3>
+        <button class="update">Update</button>
+        <button class="delete">Delete</button>
+      </div>
       <p class="blog-posts__post-content">${post.content}</p>
       <div class="blog-posts__post-footer">
         <span class="author">${post.author}</span>
@@ -76,6 +80,15 @@ const getBlogPosts = () => {
 
 // POST
 const postBlogPosts = () => {
+  ajaxHelper('POST', (posts, $error, $form) => {
+    $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
+    $error.hide();
+    $form[0].reset();
+  });
+};
+
+// USED FOR POST AND PUT
+const ajaxHelper = (method, success) => {
   $('.blog-form').on('submit', e => {
     e.preventDefault();
     let $form = $(e.target),
@@ -95,24 +108,18 @@ const postBlogPosts = () => {
      // POST
     $.ajax({
       url: URL,
-      method: 'POST',
+      method,
       dataType: 'json',
-
-      // need to set this header if sending data to be parsed by express.json() middleware
-      // otherwise data will be parsed by express.urlencoded()
       headers: {
         'Content-Type': 'application/json' // browsers default Content-Type to application/x-www-form-urlencoded
       },
       data: JSON.stringify(data), // need to stringify to send as json
-      success: posts => {
-        $('.blog-posts').prepend(buildPostsHTML([posts])); // pass the single post as an array so we can map over it on 'buildPostsHTML'
-        $error.hide();
-        $form[0].reset();
-      }, 
+      success: posts => success(posts, $error, $form),
       error: handleError
     });
   });
 };
+
 
 // INIT
 const init = () => {
